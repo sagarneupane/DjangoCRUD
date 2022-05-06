@@ -1,0 +1,59 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+{{user.username}}
+{%  endblock title%}
+
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="text-center p-">Login Your Account</h1>
+    <br>
+    {% if messages %}
+    <div class="row">
+        <div class="col-sm-12 text-center p-3">
+            {% for message in messages %}
+            <h3 class="text-{{message.tags}}">{{message}}</h3>
+
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="container bg-smoke">
+        <div class="row">
+
+                <div class="offset-sm-4 col-sm-4 p-3">
+                        <h1>Hello {{user.username}}</h1>
+                </div>
+
+
+            <div class="row">
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <a href="{% url 'signout' %}" class="btn btn-info">Logout</a>
+                </div>
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <p>Want to change Password?</p>
+                    <a href="{% url 'changepass' %}" class="btn btn-warning">Change Password</a>
+                </div>
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <p>Want to see more about yourself?</p>
+                    <a href="{% url 'view_profile' user.id %}" class="btn btn-info">Full Profile</a>
+                </div>
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <p>Want to edit details about you?</p>
+                    <a href="{% url 'edit_profile'%}" class="btn btn-success">Edit Profile</a>
+                </div>
+                {% if user.is_superuser %}
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <p>Hello Admin? Want to see the users present in our data?</p>
+                    <a href="{% url 'viewusers'%}" class="btn btn-success">View User</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

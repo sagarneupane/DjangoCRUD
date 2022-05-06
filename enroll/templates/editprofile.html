@@ -1,0 +1,51 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+Register your Account
+{%  endblock title%}
+
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="text-center p-">Welcome to user registration</h1>
+    <br>
+    {% if messages %}
+    <div class="row">
+        <div class="col-sm-12 text-center p-3">
+            {% for message in messages %}
+            <h3 class="text-{{message.tags}}">{{message}}</h3>
+
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="container bg-smoke">
+        <div class="row">
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                <div class="offset-sm-4 col-sm-4 p-3">
+                    <span class="text-danger">{{ form.non_field_errors | striptags }}</span>
+                </div>
+                {% for field in form %}
+                <div class="offset-sm-4 col-sm-4 p-3">
+                    {{field.label_tag }}  {{field}} <span class="text-danger">{{field.errors | striptags }}</span>
+                </div>
+                {% endfor %}
+                <div class="offset-sm-4 col-sm-4 p-3 text-center">
+                    <input type="submit" value="Save" class="btn btn-success">
+                </div>
+
+            </form>
+            <div class="row">
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <p>Want to go Back?</p>
+                    <a href="{% url 'profile' %}" class="btn btn-info">Back To Profile </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

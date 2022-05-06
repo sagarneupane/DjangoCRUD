@@ -1,0 +1,23 @@
+
+
+html,body{
+    height: 100%;
+}
+.container-fluid
+{
+    min-height: 100%;
+}
+
+a.nav-link{
+    color:whitesmoke;
+}
+a.nav-link:hover
+{
+    background-color: yellow;
+    color:black;
+    transition: 0.2s ease-in-out;
+}
+a.nav-link.active{
+    background-color: yellowgreen;
+    color: black;
+}

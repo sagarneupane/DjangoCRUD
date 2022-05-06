@@ -1,0 +1,80 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+Profile {{user.username }}
+{%  endblock title%}
+
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="text-center p-">Login Your Account</h1>
+    <br>
+    {% if messages %}
+    <div class="row">
+        <div class="col-sm-12 text-center p-3">
+            {% for message in messages %}
+            <h3 class="text-{{message.tags}}">{{message}}</h3>
+
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="container bg-smoke">
+        <div class="row">
+
+                <div class="offset-sm-4 col-sm-4 p-3">
+                        <h1>Hello {{user.username}}</h1>
+                </div>
+                <div class="container">
+                    {% for item in users %}
+                    <div class="col-sm-7 offset-sm-2">
+                        <span class="lead">Name:</span>
+                        {% if item.first_name == "" %}
+                        <mark>Not Set</mark>
+                        {% else %}
+                        <mark>{{item.first_name}} {{item.last_name}}</mark>
+                        {%endif%}
+                        <hr>
+                        <span class="lead">Email:</span> <mark>{{item.email}}</mark>
+                        <hr>
+                        <span class="lead">Last login:</span> <mark>{{item.last_login}}</mark>
+                        <hr>
+                        <span class="lead">ID Created On:</span> <mark>{{item.date_joined}}</mark>
+                        <hr>
+                        <span class="lead">Password:</span><mark>{{item.password}}</mark>
+                        <hr>
+                        <span class="lead">Groups:</span><mark>{{item.group}}</mark>
+                        <hr>
+                        <span class="lead">Staff Status:</span><mark>{{item.is_staff}}</mark>
+                        <hr>
+                        <span class="lead">Superuser Status:</span><mark>{{item.is_superuser}}</mark>
+                        <hr>
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+
+            <div class="row">
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <a href="{% url 'signout' %}" class="btn btn-info">Logout</a>
+                </div>
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <p>Want to change Password?</p>
+                    <a href="{% url 'changepass' %}" class="btn btn-warning">Change Password</a>
+                </div>
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <a href="{% url 'edit_profile' %}" class="btn btn-warning">Edit Profile</a>
+                </div>
+                <div class="offset-sm-4 col-sm-6 p-3">
+                    <p>Want to go Back?</p>
+                    <a href="{% url 'profile' %}" class="btn btn-info">Back To Profile </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
